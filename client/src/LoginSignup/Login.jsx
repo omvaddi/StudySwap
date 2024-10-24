@@ -1,7 +1,15 @@
 import React from 'react'
 import './LoginSignup.css'
+<<<<<<< HEAD:client/src/LoginSignup/Login.jsx
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
+=======
+
+import email_icon from '../Assets/email.png';
+import password_icon from '../Assets/password.png';
+
+
+>>>>>>> ba54a334b4f2aa65faece0a71055b94196d7f1c8:client/src/Components/LoginSignup/Login.jsx
 function Login() {
     return(
         <div className='container'>
@@ -27,4 +35,8 @@ function Login() {
         </div>
     );
 }
+<<<<<<< HEAD:client/src/LoginSignup/Login.jsx
+=======
+
+>>>>>>> ba54a334b4f2aa65faece0a71055b94196d7f1c8:client/src/Components/LoginSignup/Login.jsx
 export default Login;
