@@ -61,14 +61,14 @@
     font-size: 19px;
 }
 
-.forgot-password{
+.Register{
     padding-left: 62px;
     margin-top: 27px;
     color: #797979;
     font-size: 18px;
 }
 
-.forgot-password span{
+.Register span{
     color: #4c00b4;
     cursor: pointer;
 }
