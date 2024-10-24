@@ -7,11 +7,6 @@ import password_icon from '../Assets/password.png';
 
 
 function Signup() {
-<<<<<<< HEAD:client/src/LoginSignup/Signup.jsx
-
-=======
-    
->>>>>>> ba54a334b4f2aa65faece0a71055b94196d7f1c8:client/src/Components/LoginSignup/Signup.jsx
     return(
         <div className='container'>
             <div className="header">
