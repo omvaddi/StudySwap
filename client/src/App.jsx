@@ -1,11 +1,13 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import LoginSignup from './Components/LoginSignup/LoginSignup'
+import Login from './Components/LoginSignup/Login'
+import Signup from './Components/LoginSignup/Signup'
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginSignup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   );
