@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './LoginSignup.css'
 
 import email_icon from '../Assets/email.png';
@@ -22,7 +23,8 @@ function Login() {
                     <input type="password" placeholder="Password"/>
                 </div>
                 <div className="Register">
-                    Don't Have an account? <span>Click Here!</span></div>
+                    Don't Have an account? <span><Link to="/signup">Click Here!</Link></span>
+                </div>
                 <div className="submit-container">
                     <div className="submit">Login</div>
                 </div>
