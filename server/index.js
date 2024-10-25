@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require('mongoose')
 const cors = require("cors")
 const UserModel = require('./models/User')
+const Group = require('./groupModel')
 
 const app = express()
 app.use(express.json())
@@ -15,6 +16,16 @@ app.post('/register', (req, res) => {
     .catch(err =>res.json(err))
 })
 
+app.post('/api/group', (req, res) => {
+    const newGroup = new Group({
+        name: req.body.name,
+        code: req.body.code,
+    });
+      
+    newGroup.save()
+        .then(group => res.status(201).json(group));
+  });
+  
 app.listen(3001, () => {
     console.log("server is running")
 })
