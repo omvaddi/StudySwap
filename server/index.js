@@ -19,11 +19,11 @@ app.post('/login', (req, res) => {
                 res.json("Success")
             }
             else {
-                res.json("The password is incorrect")
+                res.json("Password is incorrect.")
             }
         }
         else{
-            res.json("No account found")
+            res.json("No account found.")
         }
     })
 })

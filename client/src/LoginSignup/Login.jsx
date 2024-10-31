@@ -10,6 +10,7 @@ import password_icon from '../Assets/password.png';
 function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const [errorMessage, setErrorMessage] = useState()
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -19,6 +20,9 @@ function Login() {
                 console.log(result);
                 if(result.data === "Success"){
                     navigate('/home');
+                }
+                else {
+                    setErrorMessage(result.data);
                 }
                 
             })
@@ -49,6 +53,7 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <div className="already-have">
                     Don't Have an account? <span><Link to="/signup">Click Here!</Link></span>
                 </div>

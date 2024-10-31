@@ -53,12 +53,17 @@
 
 .input input{
     height: 50px;
-    height: 400px;
+    width: 400px;
     background: transparent;
     border: none;
     outline: none;
     color: #797979;
     font-size: 19px;
+}
+
+.error-message{
+    padding-left: 62px;
+    color: #ff0000;
 }
 
 .already-have{
