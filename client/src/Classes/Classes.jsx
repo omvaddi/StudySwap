@@ -19,6 +19,7 @@ function Classes(){
         <div className='container'>
             <div className="header">
                 <div className="text">Create Class</div>
+                <div className="underline"></div>
             </div>
             <div className="inputs">
                 <div className="input">
