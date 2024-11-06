@@ -13,6 +13,10 @@ function Classes(){
             body: JSON.stringify({ name, code }),
         })
         .then(response => response.json())
+        .then(() => {
+            setName("");
+            setCode("");
+        })
     };
 
     return(
