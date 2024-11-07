@@ -1,28 +1,41 @@
 .sidebar {
     height: 100vh; 
     width: 250px;  
-    position: fixed; /* Fixed Sidebar (stay in place) */
+    position: fixed; 
     top: 0;
     left: 0;
-    background-color: #111; /* Dark background */
-    padding-top: 20px; /* Some top padding */
+    background-color: #111; 
   }
   
   .sidebar ul {
-    list-style-type: none; /* Remove bullet points */
+    list-style-type: none; 
     padding: 0;
   }
   
   .sidebar ul li {
-    padding: 10px;
+    display: flex;
+    height: 40px;
+    
   }
   
   .sidebar ul li a {
-    text-decoration: none; /* Remove underline */
-    color: white; /* Text color */
-    display: block; /* Make the link fill the container */
+    display: block; 
+    width: 100%;
+    padding: 10px;
+    color: white; 
+    text-decoration: none; 
   }
   
   .sidebar ul li a:hover {
-    background-color: #575757; /* Hover effect */
+    background-color: #575757; 
+  }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    color: rgb(0, 204, 255);
+    font-size: 24px;
+    column-gap: 15px;
   }

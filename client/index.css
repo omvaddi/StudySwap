@@ -5,4 +5,15 @@ body{
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
     background: linear-gradient(#2A00B7, #42006C);
-}
+  }
+  
+  header{
+    background: #e1f8ff;
+    padding: 20px;
+    font-size: 30px;
+  }
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+  }

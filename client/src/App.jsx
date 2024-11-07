@@ -5,6 +5,7 @@ import Signup from './LoginSignup/Signup'
 import Classes from './Classes/Classes'
 import Home from './Home/Home'
 import Upload from './Upload/Upload'
+import Profile from './Profile/Profile'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/classes" element={<Classes />} />
         <Route path="/home" element={<Home />} />
         <Route path="/upload" element={<Upload />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

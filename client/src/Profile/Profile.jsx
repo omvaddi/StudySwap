@@ -1,9 +1,13 @@
 import React from 'react'
+import Sidebar from '../Components/Sidebar';
 
 function Profile(){
     return(
         <div>
-            profile
+            <Sidebar />
+            <div className="content">
+                profile
+            </div>
         </div>
     )
 
