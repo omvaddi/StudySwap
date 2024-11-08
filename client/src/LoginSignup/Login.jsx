@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './LoginSignup.css'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/UserContext';
+
+import './LoginSignup.css'
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 
 
 function Login() {
+    const { setUser } = useContext(UserContext)
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [errorMessage, setErrorMessage] = useState()
@@ -17,13 +20,15 @@ function Login() {
         e.preventDefault()
         axios.post('http://localhost:3001/login', {email, password})
             .then(result => {
+                console.log("1");
                 console.log(result);
-                if(result.data === "Success"){
+                if(result.data.message === "Success"){
+                    console.log(result.data.user);
                     setUser(result.data.user);
                     navigate('/home');
                 }
                 else {
-                    setErrorMessage(result.data);
+                    setErrorMessage(result.data.user);
                 }
                 
             })

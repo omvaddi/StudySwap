@@ -11,9 +11,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb://localhost:27017/user")
-
 const mongoURI = "mongodb://localhost:27017/user";
+
+mongoose.connect(mongoURI);
 
 const conn = mongoose.createConnection(mongoURI);
 
@@ -42,7 +42,8 @@ app.post('/login', (req, res) => {
     .then(user => {
         if(user) {
             if(user.password === password) {
-                res.json("Success")
+                const { password, ...userWithoutPassword } = user.toObject();
+                res.json({ message: "Success", user: userWithoutPassword })
             }
             else {
                 res.json("Password is incorrect.")
