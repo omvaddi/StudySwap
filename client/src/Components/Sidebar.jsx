@@ -9,7 +9,7 @@ const Sidebar = () => {
       <ul>
         <div className='logo'>
           <img src={logo}  width={80} height={80}  alt="logo" />
-          StudySwap
+          <span>StudySwap</span>
         </div>
         <hr />
         <li><Link to={"/home"}>Home</Link></li>
