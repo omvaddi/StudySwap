@@ -19,6 +19,7 @@ function Login() {
             .then(result => {
                 console.log(result);
                 if(result.data === "Success"){
+                    setUser(result.data.user);
                     navigate('/home');
                 }
                 else {

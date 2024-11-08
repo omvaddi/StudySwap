@@ -11,6 +11,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+mongoose.connect("mongodb://localhost:27017/user")
+
 const mongoURI = "mongodb://localhost:27017/user";
 
 const conn = mongoose.createConnection(mongoURI);
