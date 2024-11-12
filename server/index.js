@@ -71,6 +71,12 @@ app.post('/api/group', (req, res) => {
         .then(group => res.status(201).json(group));
   });
 
+app.get('/api/groups', (req, res) => {
+    Group.find()
+        .then(groups => res.json(groups))
+        .catch(err => res.status(500).json({ message : "Error fetching groups", error: err}))
+});
+
 app.post("/upload", upload.single("file"), (req, res) => {
      if (!req.file) {
         return res.status(400).json({ message: "No file uploaded." });

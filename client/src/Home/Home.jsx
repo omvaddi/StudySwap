@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../Components/Sidebar';
 import CourseBlock from '../Components/CourseBlock'
+import axios from 'axios';
 
 function Home() {
-    const courses = [
-        { id: 'CEN3031', name: 'Software Engineering' },
-        { id: 'PHY2049', name: 'Physics 2' }
-    ];
+    const [courses, setCourses] = useState([])
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try{
+                const response = await axios.get('http://localhost:3001/api/groups');
+                console.log(response.data);
+                setCourses(response.data);
+            }
+            catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
     return (
         <div className="App">
             <Sidebar />
@@ -17,8 +31,8 @@ function Home() {
                 <div className="course-container">
                     {courses.map((course) => (
                         <CourseBlock
-                            key={course.id}
-                            courseId={course.id}
+                            key={course.code}
+                            courseId={course.code}
                             courseName={course.name}
                         />
                     ))}
