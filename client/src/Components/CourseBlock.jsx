@@ -1,16 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import AddClass from './AddClass';
 
 const CourseBlock = ({ courseName, courseId }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/courses/${courseId}`);
+        if(location.pathname === '/home') {
+            navigate(`/courses/${courseId}`);
+        }
     };
 
     return (
         <div className="course-block" onClick={handleClick} style={blockStyle}>
             <h2>{`${courseName} (${courseId})`}</h2>
+            {(location.pathname === '/upload') && <AddClass code={courseId} />}
         </div>
     );
 };
@@ -22,7 +26,6 @@ const CourseBlock = ({ courseName, courseId }) => {
         cursor: 'pointer',
         borderRadius: '15px',
         textAlign: 'center',
-        width: '1500px',
         height: '200px'
     };
 

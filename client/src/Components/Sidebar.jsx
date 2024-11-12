@@ -14,7 +14,7 @@ const Sidebar = () => {
         <hr />
         <li><Link to={"/home"}>Home</Link></li>
         <li><Link to={"/upload"}>Find Classes</Link></li>
-        <li><Link to={"/classes"}>Add Class</Link></li>
+        <li><Link to={"/classes"}>Create Class</Link></li>
         <li><Link to={"/profile"}>Profile</Link></li>
       </ul>
     </div>

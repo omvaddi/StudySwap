@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
+import axios from 'axios';
+
 import Sidebar from '../Components/Sidebar';
 import CourseBlock from '../Components/CourseBlock'
-import axios from 'axios';
+
 
 function Home() {
     const [courses, setCourses] = useState([])
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -21,15 +25,16 @@ function Home() {
         fetchCourses();
     }, []);
 
+    const userCourses = user ? courses.filter(course => user.classes.includes(course.code)) : [];
+
     return (
         <div className="App">
             <Sidebar />
             <div className="content">
-                <h1>Welcome to the Main Content Area</h1>
-                <p>This is the main content of the page.</p>
+                <h1>My Classes</h1>
 
                 <div className="course-container">
-                    {courses.map((course) => (
+                    {userCourses.map((course) => (
                         <CourseBlock
                             key={course.code}
                             courseId={course.code}

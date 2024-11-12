@@ -11,7 +11,7 @@ function Classes(){
         fetch('http://localhost:3001/api/group', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, code }),
+            body: JSON.stringify({ name, code, dateCreated: new Date() }),
         })
         .then(response => response.json())
         .then(() => {

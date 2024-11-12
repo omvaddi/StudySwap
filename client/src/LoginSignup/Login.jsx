@@ -20,7 +20,6 @@ function Login() {
         e.preventDefault()
         axios.post('http://localhost:3001/login', {email, password})
             .then(result => {
-                console.log("1");
                 console.log(result);
                 if(result.data.message === "Success"){
                     console.log(result.data.user);

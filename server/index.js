@@ -4,8 +4,8 @@ const cors = require("cors");
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
-const UserModel = require("./models/User");
-const Group = require("./groupModel");
+const UserModel = require("./models/userModel");
+const GroupModel = require("./models/groupModel");
 
 const app = express()
 app.use(express.json())
@@ -62,17 +62,13 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/api/group', (req, res) => {
-    const newGroup = new Group({
-        name: req.body.name,
-        code: req.body.code,
-    });
-      
-    newGroup.save()
-        .then(group => res.status(201).json(group));
-  });
+    GroupModel.create(req.body)
+    .then(users => res.json(users))
+    .catch(err =>res.json(err))
+  })
 
 app.get('/api/groups', (req, res) => {
-    Group.find()
+    GroupModel.find()
         .then(groups => res.json(groups))
         .catch(err => res.status(500).json({ message : "Error fetching groups", error: err}))
 });
@@ -100,6 +96,23 @@ app.get("/file/:filename", (req, res) => {
         } else {
             return res.status(404).json({ message: "Not an image file" });
         }
+    });
+});
+
+app.put('/api/user/:_id', (req, res) => {
+    const userId = req.params._id; 
+    const { classes } = req.body; 
+
+    UserModel.findByIdAndUpdate(
+        userId, 
+        { classes }, 
+        { new: true }
+    )
+    .then(updatedUser => {
+        res.json(updatedUser);
+    })
+    .catch(err => {
+        res.status(500).json({ message: "Error updating user classes", error: err });
     });
 });
 
