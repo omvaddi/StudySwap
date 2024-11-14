@@ -1,10 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import AddClass from './AddClass';
 import RemoveClass from './RemoveClass';
 
 const CourseBlock = ({ courseName, courseId }) => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleClick = () => {
         navigate(`/courses/${courseId}`);
