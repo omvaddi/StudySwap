@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const UploadFIle = () => {
+const UploadFile = () => {
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
 
@@ -45,4 +45,4 @@ const UploadFIle = () => {
     );
 };
 
-export default UploadFIle;
+export default UploadFile;

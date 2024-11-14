@@ -3,6 +3,8 @@ import { UserContext } from '../Context/UserContext';
 import Sidebar from '../Components/Sidebar';
 import default_pfp from '../Assets/default_pfp.png';
 import './Profile.css';
+import UploadFIle from '../Components/UploadFile';
+import UploadFile from '../Components/UploadFile';
 
 function Profile(){
     const { user } = useContext(UserContext);
@@ -22,6 +24,8 @@ function Profile(){
                     </div>
                 </div>
                 profile
+
+                <UploadFile />
             </div>
         </div>
     )
