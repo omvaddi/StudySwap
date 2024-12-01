@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import UploadNote from '../Components/UploadNote';
+import UploadNote from '../Components/UploadNote';  // Keeping the UploadNote component for file uploads
 import axios from 'axios';
 
 const CourseDetails = () => {
@@ -29,24 +29,20 @@ const CourseDetails = () => {
 
     // Function to handle file download
     const downloadFile = (filename) => {
-        if (!filename) {
-            console.error("Filename is invalid for download");
-            return;
-        }
-
+        // Create a link element to trigger the download
         const link = document.createElement('a');
-        link.href = `http://localhost:3001/file/${filename}`; // Ensure this is the correct file download route
-        link.setAttribute('download', filename);
-        link.style.display = 'none';
+        link.href = `http://localhost:3001/file/${filename}`;  // Ensure this is the correct file download route
+        link.setAttribute('download', filename);  // This ensures that the file is downloaded with the correct filename
+        link.style.display = 'none';  // Optionally, hide the link from view
         document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        link.click();  // Programmatically click the link to start the download
+        document.body.removeChild(link);  // Clean up the DOM
     };
 
     return (
         <div style={{ padding: '16px' }}>
             <h1 style={{ marginBottom: '16px' }}>Course Details for {courseId}</h1>
-            <UploadNote courseId={courseId} />
+            <UploadNote courseId={courseId} />  {/* Keeping the file upload section */}
             <div>
                 <h2 style={{ marginTop: '32px', marginBottom: '16px' }}>Uploaded Files</h2>
                 {files.length > 0 ? (

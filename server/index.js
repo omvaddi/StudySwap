@@ -8,7 +8,11 @@ const GroupModel = require("./models/groupModel");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // Allow only your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  }));
 
 const mongoURI = "mongodb://localhost:27017/user";
 
@@ -69,12 +73,19 @@ app.get('/api/groups', (req, res) => {
 });
 
 app.post("/upload", upload.single("file"), (req, res) => {
+    console.log(req.body);
+    console.log(req.body.courseId);
     if (!req.file) {
         return res.status(400).json({ message: "No file uploaded." });
     }
-
+    const courseId = req.body.courseId;
     // Upload file to GridFS
-    const uploadStream = bucket.openUploadStream(Date.now() + "-" + req.file.originalname);
+    const uploadStream = bucket.openUploadStream(Date.now() + "-" + req.file.originalname, {
+        metadata: {
+            courseId: courseId // Add courseId as metadata
+        }
+    });
+    
     uploadStream.write(req.file.buffer);
     uploadStream.end();
 
@@ -95,20 +106,36 @@ app.post("/upload", upload.single("file"), (req, res) => {
 });
 
 app.get("/file/:filename", (req, res) => {
-    // Find the file in GridFS by filename
     const filename = req.params.filename;
 
-    bucket.openDownloadStreamByName(filename)
-        .on("data", (chunk) => {
-            res.write(chunk);
-        })
-        .on("end", () => {
-            res.end();
-        })
-        .on("error", (err) => {
+    // Fetch the file's metadata from GridFS to get the contentType
+    const file = bucket.find({ filename: filename }).toArray((err, files) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error fetching file metadata', error: err });
+        }
+
+        if (!files || files.length === 0) {
+            return res.status(404).json({ message: 'File not found' });
+        }
+
+        const fileMetadata = files[0];
+        const contentType = fileMetadata.contentType || 'application/octet-stream'; // Default to binary if no content type
+
+        // Set the Content-Type header
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+        // Open the download stream and pipe it to the response
+        const downloadStream = bucket.openDownloadStreamByName(filename);
+
+        downloadStream.pipe(res);
+
+        downloadStream.on("error", (err) => {
             res.status(404).json({ message: "File not found", error: err });
         });
+    });
 });
+
 
 app.put('/api/user/:_id', (req, res) => {
     const userId = req.params._id;
