@@ -75,14 +75,17 @@ app.get('/api/groups', (req, res) => {
 app.post("/upload", upload.single("file"), (req, res) => {
     console.log(req.body);
     console.log(req.body.courseId);
+    console.log(req.body.uploader);
     if (!req.file) {
         return res.status(400).json({ message: "No file uploaded." });
     }
     const courseId = req.body.courseId;
+    const uploader=req.body.uploader;
     // Upload file to GridFS
     const uploadStream = bucket.openUploadStream(Date.now() + "-" + req.file.originalname, {
         metadata: {
-            courseId: courseId // Add courseId as metadata
+            courseId: courseId, // Add courseId as metadata
+            uploader: uploader
         }
     });
     
