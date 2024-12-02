@@ -36,6 +36,7 @@ const removeClassStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
 };
 
 export default RemoveClass;

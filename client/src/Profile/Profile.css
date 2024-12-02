@@ -1,9 +1,0 @@
-.profile-header{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    height: 200px;
-    color: rgb(0, 204, 255);
-    font-size: 36px;
-    column-gap: 20px;
-  }

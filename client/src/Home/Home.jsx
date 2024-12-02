@@ -31,7 +31,7 @@ function Home() {
         <div className="App">
             <Sidebar />
             <div className="content">
-                <h1>My Classes</h1>
+                <h1 style={{ fontSize: '50px' }}>My Classes</h1>
 
                 <div className="course-container">
                     {userCourses.map((course) => (

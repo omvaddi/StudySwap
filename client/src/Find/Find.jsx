@@ -3,7 +3,7 @@ import { UserContext } from '../Context/UserContext';
 import axios from 'axios';
 
 import Sidebar from '../Components/Sidebar';
-import CourseBlock from '../Components/CourseBlock'
+import CourseBlock from '../Components/CourseBlock';
 
 const Upload = () => {
     const [courses, setCourses] = useState([])
@@ -31,7 +31,7 @@ const Upload = () => {
         <div>
             <Sidebar />
             <div className="content">
-                <h1>Find New Classes</h1>
+                <h1 style={{ fontSize: '50px' }}>Find New Classes</h1>
                 <div className="course-container">
                     {newCourses.map((course) => (
                         <CourseBlock

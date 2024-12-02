@@ -28,6 +28,7 @@ const signOutStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
 };
 
 export default SignOut;

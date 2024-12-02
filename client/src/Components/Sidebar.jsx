@@ -13,8 +13,8 @@ const Sidebar = () => {
         </div>
         <hr />
         <li><Link to={"/home"}>Home</Link></li>
-        <li><Link to={"/upload"}>Find Classes</Link></li>
-        <li><Link to={"/courses"}>Create Class</Link></li>
+        <li><Link to={"/find"}>Find Classes</Link></li>
+        <li><Link to={"/create"}>Create Class</Link></li>
         <li><Link to={"/profile"}>Profile</Link></li>
       </ul>
     </div>
