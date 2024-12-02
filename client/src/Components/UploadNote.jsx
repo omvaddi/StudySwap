@@ -56,7 +56,6 @@ const UploadNote = ({ courseId, username, onUploadClick }) => {
                 <button type="submit">Upload</button>
             </form>
             {message && <p>{message}</p>}
-            <h1>Welcome, {user?.name || "Guest"}!</h1>
         </div>
     );
 };

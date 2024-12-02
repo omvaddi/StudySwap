@@ -63,7 +63,7 @@ const CourseDetails = () => {
 
     return (
         <div style={{ padding: '16px' }}>
-            <h1>{user?.name || "Guest"}</h1>
+            <h1>Logged in as: {user?.name || "Guest"}</h1>
             <h1 style={{ marginBottom: '16px' }}>Course Details for {courseId}</h1>
 
             <UploadNote
