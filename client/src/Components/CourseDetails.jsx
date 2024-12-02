@@ -50,17 +50,28 @@ const CourseDetails = () => {
         document.body.removeChild(link);
     };
 
+    // Function to handle file deletion
+    const deleteFile = async (filename) => {
+        try {
+            await axios.delete(`http://localhost:3001/file/${filename}`);
+            setFiles((prevFiles) => prevFiles.filter((file) => file.filename !== filename));
+            console.log(`File ${filename} deleted successfully`);
+        } catch (error) {
+            console.error(`Error deleting file ${filename}:`, error);
+        }
+    };
+
     return (
         <div style={{ padding: '16px' }}>
             <h1>{user?.name || "Guest"}</h1>
             <h1 style={{ marginBottom: '16px' }}>Course Details for {courseId}</h1>
-            
+
             <UploadNote
                 courseId={courseId}
                 username={user?.name || "Guest"}
                 onUploadSuccess={addFile}
             /> {/* Pass addFile as a prop */}
-            
+
             <button
                 style={{
                     marginTop: '16px',
@@ -75,7 +86,7 @@ const CourseDetails = () => {
             >
                 Refresh Files
             </button>
-            
+
             <div>
                 <h2 style={{ marginTop: '32px', marginBottom: '16px' }}>Uploaded Files</h2>
                 {files.length > 0 ? (
@@ -87,7 +98,7 @@ const CourseDetails = () => {
                         }}
                     >
                         {files.map((file, index) => {
-                            const { filename,metadata } = file || {};
+                            const { filename, metadata } = file || {};
                             if (!filename) {
                                 console.warn("Invalid file data at index:", index, file);
                                 return null; // Skip invalid file entries
@@ -120,10 +131,27 @@ const CourseDetails = () => {
                                             marginBottom: '8px',
                                         }}
                                     >
-                                        {filename}<br />Uploaded by: {metadata.uploader}
-                                        
+                                        {filename}
+                                        <br />
+                                        Uploaded by: {metadata.uploader}
                                     </p>
-                                
+
+                                    {user?.name === metadata.uploader && ( // Conditionally render the Delete button
+                                        <button
+                                            style={{
+                                                padding: '8px 16px',
+                                                backgroundColor: '#FF5733', // Red color for delete
+                                                color: '#fff',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer',
+                                            }}
+                                            onClick={() => deleteFile(filename)} // Call delete function
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
+
                                     <button
                                         style={{
                                             padding: '8px 16px',

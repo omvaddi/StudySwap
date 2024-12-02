@@ -167,6 +167,54 @@ app.get('/files', (req, res) => {
     });
 });
 
+async function deleteFile(fileId) {
+    console.log("deleteFile");
+    try {
+        const response = await fetch(`http://localhost:3001/file/${fileId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            console.log('File deleted successfully');
+        } else {
+            const data = await response.json();
+            console.error(data.message);
+        }
+    } catch (error) {
+        console.error('Error deleting file:', error);
+    }
+}
+
+  
+  // Route to delete a file
+// Delete a file from GridFS by file ID// Delete a file from GridFS by file ID
+app.delete('/file/:filename', async (req, res) => {
+    const { filename } = req.params;  // Get the filename from the request parameters
+    console.log("Received filename:", filename);
+
+    try {
+        // Find the file metadata using the filename
+        const file = await bucket.find({ filename }).toArray();
+
+        if (!file || file.length === 0) {
+            return res.status(404).json({ message: "File not found" });
+        }
+
+        // File exists, proceed to delete it
+        await bucket.delete(file[0]._id);  // Use the file's _id to delete the file
+
+        res.status(200).json({ message: 'File deleted successfully' });
+    } catch (error) {
+        console.error("Error deleting file:", error);
+        res.status(500).json({ message: "Error deleting file", error });
+    }
+});
+
+
+
+
+
+
 app.listen(3001, () => {
     console.log("server is running");
 });
