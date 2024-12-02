@@ -30,7 +30,7 @@ const Upload = () => {
         <div>
             <Sidebar />
             <div className="content">
-                <h2>Find New Classes</h2>
+                <h1>Find New Classes</h1>
                 <div className="course-container">
                     {newCourses.map((course) => (
                         <CourseBlock

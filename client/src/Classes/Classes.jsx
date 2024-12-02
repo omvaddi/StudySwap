@@ -33,7 +33,7 @@ function Classes(){
                         <div className="input">
                             <input 
                                 type="text" 
-                                placeholder="Class Name" 
+                                placeholder="    Class Name" 
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -41,7 +41,7 @@ function Classes(){
                         <div className="input">
                             <input 
                                 type="text" 
-                                placeholder="Class Code" 
+                                placeholder="    Class Code" 
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
                             />
