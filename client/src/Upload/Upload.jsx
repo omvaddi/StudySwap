@@ -8,6 +8,7 @@ import CourseBlock from '../Components/CourseBlock'
 const Upload = () => {
     const [courses, setCourses] = useState([])
     const { user } = useContext(UserContext);
+    
 
     useEffect(() => {
         const fetchCourses = async () => {

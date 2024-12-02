@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from '../Context/UserContext';
 
-const UploadNote = ({ courseId }) => {
+const UploadNote = ({ courseId, username, onUploadClick }) => {
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
+    const { user } = useContext(UserContext);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -11,21 +13,26 @@ const UploadNote = ({ courseId }) => {
 
     const handleUpload = async (e) => {
         e.preventDefault();
+
         if (!file) {
             setMessage('Please select a file to upload.');
             return;
         }
 
-        const formData = new FormData();
-        formData.append('file', file);
         if (!courseId) {
             setMessage('Course ID is missing!');
             return;
         }
-        else{
-            console.log(courseId);
-        }
+
+        const formData = new FormData();
+        formData.append('file', file);
         formData.append('courseId', courseId); // Append courseId as metadata
+        formData.append('uploader', username);
+
+        // Trigger callback when upload starts
+        if (onUploadClick) {
+            onUploadClick();
+        }
 
         try {
             const response = await axios.post('http://localhost:3001/upload', formData, {
@@ -33,6 +40,7 @@ const UploadNote = ({ courseId }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+
             setMessage('File uploaded successfully!');
             console.log(response.data);
         } catch (error) {
