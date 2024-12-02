@@ -11,6 +11,7 @@ import password_icon from '../Assets/password.png';
 
 function Login() {
     const { setUser } = useContext(UserContext)
+    
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [errorMessage, setErrorMessage] = useState()
