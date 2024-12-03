@@ -33,17 +33,25 @@ function Classes(){
                         <div className="input">
                             <input 
                                 type="text" 
-                                placeholder="    Class Name" 
+                                placeholder="Class Name" 
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                style={{
+                                    paddingLeft: '15px',
+                                    marginLeft: '15px'
+                                }}
                             />
                         </div>
                         <div className="input">
                             <input 
                                 type="text" 
-                                placeholder="    Class Code" 
+                                placeholder="Class Code" 
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
+                                style={{
+                                    paddingLeft: '15px',
+                                    marginLeft: '15px'
+                                }}
                             />
                         </div>
                         <div className="submit-container">

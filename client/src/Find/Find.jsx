@@ -7,6 +7,7 @@ import CourseBlock from '../Components/CourseBlock';
 
 const Upload = () => {
     const [courses, setCourses] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
     const { user } = useContext(UserContext);
     
 
@@ -27,13 +28,37 @@ const Upload = () => {
 
     const newCourses = user ? courses.filter(course => !user.classes.includes(course.code)) : [];
 
+    const filteredCourses = user
+    ? courses.filter(
+        (course) =>
+            !user.classes.includes(course.code) &&
+            (course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            course.code.toLowerCase().includes(searchQuery.toLowerCase()))
+    )
+    : [];
+
     return (
         <div>
             <Sidebar />
             <div className="content">
                 <h1 style={{ fontSize: '50px' }}>Find New Classes</h1>
+                <input 
+                    type="text"
+                    placeholder="Search for a class..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                        padding: '10px',
+                        width: '200px',
+                        marginLeft: '10px',
+                        marginBottom: '20px',
+                        borderRadius: '10px',
+                        border: '1px solid #ccc'
+                    }}
+                    />
+
                 <div className="course-container">
-                    {newCourses.map((course) => (
+                    {filteredCourses.map((course) => (
                         <CourseBlock
                             key={course.code}
                             courseId={course.code}
