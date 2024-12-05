@@ -28,7 +28,7 @@ function Login() {
                     navigate('/home');
                 }
                 else {
-                    setErrorMessage(result.data.user);
+                    setErrorMessage(result.data.message);
                 }
                 
             })

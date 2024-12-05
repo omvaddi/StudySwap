@@ -45,10 +45,10 @@ app.post('/login', (req, res) => {
                     const { password, ...userWithoutPassword } = user.toObject();
                     res.json({ message: "Success", user: userWithoutPassword });
                 } else {
-                    res.json("Password is incorrect.");
+                    res.json({message: "Password is incorrect."});
                 }
             } else {
-                res.json("No account found.");
+                res.json({message: "No account found."});
             }
         })
         .catch(err => res.json(err));
