@@ -14,7 +14,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   }));
 
-const mongoURI = "mongodb://localhost:27017/user";
+const mongoURI = "mongodb+srv://studyswapDevTeam12:studyswapDevTeam12@studyswap.fxrf5.mongodb.net/";
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
