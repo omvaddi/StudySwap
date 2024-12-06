@@ -46,11 +46,13 @@ You should have two Powershell Windows open.
 
 This first should be in the client directory, the second should be in the server directory
 
-In the second Powershell window, which is the one that is in the server directory, run:
+In the second Powershell window, which is the one that is in the <u>**server**</u> directory, run:
 ```
 npm start
 ```
-In the first Powershell window, which is the one that is in the client directory, run:
+MAKE SURE TO KEEP THIS WINDOW OPEN
+
+In the first Powershell window, which is the one that is in the <u>**client**</u> directory, run:
 ```
 npm run dev
 ```
