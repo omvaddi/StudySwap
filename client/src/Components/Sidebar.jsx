@@ -8,10 +8,12 @@ const Sidebar = () => {
     <div className="sidebar">
       <ul>
         <div className='logo'>
-          <img src={logo}  width={80} height={80}  alt="logo" />
+          {/* Display the logo image */}
+          <img src={logo} width={80} height={80} alt="logo" />
           <span>StudySwap</span>
         </div>
         <hr />
+        {/* Navigation links */}
         <li><Link to={"/home"}>Home</Link></li>
         <li><Link to={"/find"}>Find Classes</Link></li>
         <li><Link to={"/create"}>Create Class</Link></li>

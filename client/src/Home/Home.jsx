@@ -1,31 +1,29 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Sidebar from '../Components/Sidebar';
+import CourseBlock from '../Components/CourseBlock';
 import { UserContext } from '../Context/UserContext';
 import axios from 'axios';
 
-import Sidebar from '../Components/Sidebar';
-import CourseBlock from '../Components/CourseBlock'
-
-
 function Home() {
-    const [courses, setCourses] = useState([])
-    const [searchQuery, setSearchQuery] = useState('')
-    const { user } = useContext(UserContext);
+    const [courses, setCourses] = useState([]); // State to store the list of courses
+    const [searchQuery, setSearchQuery] = useState(''); // State to store the search query
+    const { user } = useContext(UserContext); // Get user from UserContext
 
     useEffect(() => {
         const fetchCourses = async () => {
-            try{
-                const response = await axios.get('http://localhost:3001/api/groups');
+            try {
+                const response = await axios.get('http://localhost:3001/api/groups'); // Fetch courses from the backend
                 console.log(response.data);
-                setCourses(response.data);
-            }
-            catch (error) {
+                setCourses(response.data); // Update the courses state with the fetched data
+            } catch (error) {
                 console.error("Error fetching courses:", error);
             }
         };
 
-        fetchCourses();
+        fetchCourses(); // Fetch courses when the component mounts
     }, []);
 
+    // Filter courses based on the search query and user's enrolled classes
     const filteredCourses = user
         ? courses.filter(
             (course) =>
@@ -54,22 +52,14 @@ function Home() {
                         borderRadius: '10px',
                         border: '1px solid #ccc'
                     }}
-                    />
-
-                <div className="course-container">
-                    {filteredCourses.map((course) => (
-                        <CourseBlock
-                            key={course.code}
-                            courseId={course.code}
-                            courseName={course.name}
-                        />
-                    ))}
-                </div>
+                />
+                {/* Render the filtered courses */}
+                {filteredCourses.map((course) => (
+                    <CourseBlock key={course.code} courseName={course.name} courseId={course.code} />
+                ))}
             </div>
         </div>
     );
 }
 
-
 export default Home;
-

@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import Sidebar from '../Components/Sidebar';
 
-function Classes(){
-    const [name, setName] = useState("");
-    const [code, setCode] = useState("");
+function Classes() {
+    const [name, setName] = useState(""); // State to store the class name
+    const [code, setCode] = useState(""); // State to store the class code
     
     const handleSubmit = () => {
         console.log(name, code);
         
+        // Send a POST request to create a new class
         fetch('http://localhost:3001/api/group', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -15,14 +16,14 @@ function Classes(){
         })
         .then(response => response.json())
         .then(() => {
-            setName("");
-            setCode("");
-        })
+            setName(""); // Clear the class name input
+            setCode(""); // Clear the class code input
+        });
     };
 
-    return(
+    return (
         <div>
-            <Sidebar />
+            <Sidebar /> 
             <div className="content">
                 <div className="container">
                     <div className="header">
@@ -54,17 +55,12 @@ function Classes(){
                                 }}
                             />
                         </div>
-                        <div className="submit-container">
-                            <div className={"submit"} onClick={(handleSubmit)}>
-                                Create Class
-                            </div>
-                        </div>
+                        <button onClick={handleSubmit}>Create Class</button> {/* Button to submit the form */}
                     </div>
                 </div>
             </div>
         </div>
     );
-
 }
 
 export default Classes;

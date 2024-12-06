@@ -3,22 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from '../Context/UserContext';
 
 const SignOut = () => {
-    const { setUser } = useContext(UserContext)
-    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext); // Get setUser from UserContext
+    const navigate = useNavigate(); // Hook to navigate programmatically
 
     const handleClick = () => {
-        setUser(null);
-        navigate('/login');
-    }
+        setUser(null); // Clear the user context
+        navigate('/login'); // Navigate to the login page
+    };
+
     return (
         <div>
             <div onClick={handleClick} style={signOutStyle}>
-                <h3>Sign Out  </h3>
+                <h3>Sign Out</h3>
             </div>
         </div>
     );
 };
 
+// Styling for the SignOut component
 const signOutStyle = {
     padding: '20px',
     margin: '10px',
