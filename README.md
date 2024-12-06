@@ -1,8 +1,7 @@
 # StudySwap
 Note-sharing app for high-achieving students
 # How to set up on Windows:
-First, download Node.js. at [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/prebuilt-installer) and make sure to enable script running.
-
+First, download Node.js. at [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/prebuilt-installer)
 Open Windows PowerShell as an administrator, and run
 ```
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
