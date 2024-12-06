@@ -40,6 +40,7 @@ function Home() {
             <div className="content">
                 <h1 style={{ fontSize: '50px' }}>My Classes</h1>
 
+                {/* Search to filter courses */}
                 <input 
                     type="text"
                     placeholder="Search for a class..."

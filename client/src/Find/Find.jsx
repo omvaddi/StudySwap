@@ -45,6 +45,8 @@ const Upload = () => {
             <Sidebar />
             <div className="content">
                 <h1 style={{ fontSize: '50px' }}>Find New Classes</h1>
+                
+                {/* Search to filter courses */}
                 <input 
                     type="text"
                     placeholder="Search for a class..."
@@ -54,7 +56,9 @@ const Upload = () => {
                         padding: '10px',
                         width: '200px',
                         marginLeft: '10px',
-                        marginBottom: '20px'
+                        marginBottom: '20px',
+                        borderRadius: '10px',
+                        border: '1px solid #ccc'
                     }}
                     />
 

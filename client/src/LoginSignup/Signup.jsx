@@ -56,9 +56,12 @@ function Signup() {
                         onChange={(e) => setPassword(e.target.value)} // Update the password state
                     />
                 </div>
-                    <div className="already-have">
-                    Already Have an account? <span><Link to="/login">Click Here!</Link></span>  {/* Link to the login page */}
+                <div className="already-have">
+                    Already Have an account? <span><Link to="/login">Click Here!</Link></span>
                 </div>
+                <button type = "submit" className="submit-container submit">
+                    Signup
+                </button>
             </form>
         </div>
     );
