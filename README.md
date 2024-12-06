@@ -32,6 +32,14 @@ cd server
 npm install
 ```
 
+Now, we will create the .env by copying it from .env.sample:
+```
+ .env.sample .env
+```
+This will load the default MongoDB URI server.
+
+If you wish to use a different server later, simply change the MongoDB URI in the .env file. Make sure to keep the same formatting.
+
 You have finished the setup. If you wish to now run the project, keep both of your Powershell Windows Open.
 # How to run on Windows:
 You should have two Powershell Windows open.
