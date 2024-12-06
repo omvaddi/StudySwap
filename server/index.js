@@ -5,6 +5,7 @@ const multer = require("multer");
 const { MongoClient, GridFSBucket } = require("mongodb");
 const UserModel = require("./models/userModel");
 const GroupModel = require("./models/groupModel");
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   }));
 
-const mongoURI = "mongodb+srv://studyswapDevTeam12:studyswapDevTeam12@studyswap.fxrf5.mongodb.net/";
+const mongoURI = process.env.mongoURI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
