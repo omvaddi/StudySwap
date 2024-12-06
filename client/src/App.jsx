@@ -1,14 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { UserProvider } from './Context/UserContext';
-import Login from './LoginSignup/Login';
-import Signup from './LoginSignup/Signup';
-import Create from './Create/Create';
-import Home from './Home/Home';
-import Find from './Find/Find';
-import Profile from './Profile/Profile';
-import CourseDetails from './Course/CourseDetails';
-
+import React from 'react'
+import {BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { UserProvider } from './Context/UserContext'
+import Login from './LoginSignup/Login'
+import Signup from './LoginSignup/Signup'
+import Create from './Create/Create'
+import Home from './Home/Home'
+import Find from './Find/Find'
+import Profile from './Profile/Profile'
+import CourseDetails from './Course/CourseDetails'
+ 
 function App() {
   return (
     <UserProvider> {/* Provide the UserContext to the entire app */}
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

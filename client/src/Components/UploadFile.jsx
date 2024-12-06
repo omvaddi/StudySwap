@@ -40,7 +40,7 @@ const UploadFile = () => {
                 <input type="file" onChange={handleFileChange} /> {/* Input to select a file */}
                 <button type="submit">Upload</button> {/* Button to submit the form */}
             </form>
-            {message && <p>{message}</p>} {/* Display the message if it exists */}
+            {message && <p>{message}</p>} {/* Display message if it exists */}
         </div>
     );
 };

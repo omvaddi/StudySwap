@@ -16,6 +16,7 @@ function Signup() {
 
     const handleSignup = (e) => {
         e.preventDefault(); // Prevent the default form submission
+
         axios.post('http://localhost:3001/register', {name, email, password, friends: [], dateCreated: new Date()})
             .then(result => {
                 console.log(result);
@@ -53,11 +54,10 @@ function Signup() {
                         type="password"
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)} // Update the password state
-                    /> 
+                    />
                 </div>
-                <button type="submit">Signup</button> {/* Button to submit the form */}
-                <div className="already-have">
-                    Already have an account? <span><Link to="/login">Login here</Link></span> {/* Link to the login page */}
+                    <div className="already-have">
+                    Already Have an account? <span><Link to="/login">Click Here!</Link></span>  {/* Link to the login page */}
                 </div>
             </form>
         </div>

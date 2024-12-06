@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Sidebar from '../Components/Sidebar';
 
-function Classes() {
+function Classes(){
     const [name, setName] = useState(""); // State to store the class name
     const [code, setCode] = useState(""); // State to store the class code
     
@@ -15,10 +15,11 @@ function Classes() {
             body: JSON.stringify({ name, code, dateCreated: new Date() }),
         })
         .then(response => response.json())
-        .then(() => {
-            setName(""); // Clear the class name input
-            setCode(""); // Clear the class code input
-        });
+        .then(() => { 
+            // Clear class input
+            setName("");
+            setCode("");
+        })
     };
 
     return (
@@ -55,7 +56,12 @@ function Classes() {
                                 }}
                             />
                         </div>
-                        <button onClick={handleSubmit}>Create Class</button> {/* Button to submit the form */}
+                        <div className="submit-container">
+                            {/* Button to submit the form */}
+                            <div className={"submit"} onClick={(handleSubmit)}>
+                                Create Class
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

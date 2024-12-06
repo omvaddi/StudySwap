@@ -11,11 +11,12 @@ function Home() {
 
     useEffect(() => {
         const fetchCourses = async () => {
-            try {
+            try{
                 const response = await axios.get('http://localhost:3001/api/groups'); // Fetch courses from the backend
                 console.log(response.data);
                 setCourses(response.data); // Update the courses state with the fetched data
-            } catch (error) {
+            }
+            catch (error) {
                 console.error("Error fetching courses:", error);
             }
         };
@@ -52,11 +53,18 @@ function Home() {
                         borderRadius: '10px',
                         border: '1px solid #ccc'
                     }}
-                />
-                {/* Render the filtered courses */}
-                {filteredCourses.map((course) => (
-                    <CourseBlock key={course.code} courseName={course.name} courseId={course.code} />
-                ))}
+                    />
+
+                <div className="course-container">
+                    {/* Render the filtered courses */}
+                    {filteredCourses.map((course) => (
+                        <CourseBlock
+                            key={course.code}
+                            courseId={course.code}
+                            courseName={course.name}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

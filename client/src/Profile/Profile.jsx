@@ -59,24 +59,107 @@ function Profile() {
 
     return (
         <div>
-            <Sidebar /> {/* Sidebar component */}
+            <Sidebar />
             <div className="content">
-                <h1>Profile</h1>
-                <SignOut /> {/* SignOut component */}
-                <h2>Uploaded Files</h2>
-                {files.length > 0 ? (
-                    <ul>
-                        {files.map((file) => (
-                            <li key={file.filename}>
-                                {file.filename}
-                                <button onClick={() => downloadFile(file.filename)}>Download</button>
-                                <button onClick={() => deleteFile(file.filename)}>Delete</button>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No files uploaded yet.</p>
-                )}
+                <div>
+                    {user ? (
+                        <h1 style={{ fontSize: '50px' }}>Welcome, {user.name}!</h1>
+                    ) : (
+                        <h1 style={{ fontSize: '50px' }}>Please Log In</h1>
+                    )}
+                </div>
+                <div style={{ padding: '16px' }}>
+                    {user ? (
+                        <h1 style={{ marginTop: '32px', marginBottom: '16px' }}>Your Uploaded Files</h1>
+                    ) : (
+                        <h1 style={{ fontSize: '50px' }}></h1>
+                    )}
+                    
+                    {files.length > 0 ? (
+                        <div
+                            style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                                gap: '16px',
+                            }}
+                        >
+                            {files.map((file, index) => {
+                                const { filename, metadata } = file || {};
+                                if (!filename) {
+                                    console.warn("Invalid file data at index:", index, file);
+                                    return null; // Skip invalid file entries
+                                }
+                                return (
+                                    <div
+                                        key={filename}
+                                        style={{
+                                            backgroundColor: '#ffffff',
+                                            borderRadius: '8px',
+                                            padding: '8px',
+                                            textAlign: 'center',
+                                        }}
+                                    >
+                                        <img
+                                            src={`http://localhost:3001/file/${filename}`} // File URL
+                                            alt={filename}
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                borderRadius: '4px',
+                                                marginBottom: '8px',
+                                            }}
+                                        />
+                                        <p
+                                            style={{
+                                                fontSize: '14px',
+                                                fontWeight: 'bold',
+                                                marginBottom: '8px',
+                                            }}
+                                        >
+                                            {filename}
+                                            <br />
+                                            Uploaded by: {metadata.uploader}
+                                        </p>
+                                        <button
+                                            style={{
+                                                padding: '8px',
+                                                backgroundColor: '#4CAF50',
+                                                color: '#fff',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer',
+                                                width: '90px', 
+                                                height: '32px', 
+                                            }}
+                                            onClick={() => downloadFile(filename)}
+                                        >
+                                            Download
+                                        </button>
+                                        <button
+                                            style={{
+                                                padding: '8px 16px',
+                                                backgroundColor: '#FF5733', // Red color for delete
+                                                color: '#fff',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer',
+                                                width: '90px', 
+                                                height: '32px', 
+                                                marginLeft: '8px',
+                                            }}
+                                            onClick={() => deleteFile(filename)} // Call delete function
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <p style={{ color: '#666', fontStyle: 'italic' }}></p>
+                    )}
+                </div>
+                <SignOut />
             </div>
         </div>
     );

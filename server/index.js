@@ -18,8 +18,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], 
   }));
 
-  // Connect to MongoDB using Mongoose
-  // Use .env to get the MongoDB URI
+// Connect to MongoDB using Mongoose
+// Use .env to get the MongoDB URI
 const mongoURI = process.env.mongoURI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });

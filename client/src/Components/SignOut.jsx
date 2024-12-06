@@ -9,8 +9,7 @@ const SignOut = () => {
     const handleClick = () => {
         setUser(null); // Clear the user context
         navigate('/login'); // Navigate to the login page
-    };
-
+    }
     return (
         <div>
             <div onClick={handleClick} style={signOutStyle}>

@@ -1,9 +1,13 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
-import email_icon from '../Assets/email_icon.png';
-import password_icon from '../Assets/password_icon.png';
+
+import './LoginSignup.css';
+import email_icon from '../Assets/email.png';
+import password_icon from '../Assets/password.png';
+
 
 function Login() {
     const { setUser } = useContext(UserContext); // Get setUser from UserContext
@@ -18,12 +22,13 @@ function Login() {
         axios.post('http://localhost:3001/login', { email, password })
             .then(result => {
                 console.log(result);
-                if (result.data.message === "Success") {
+                if (result.data.message === "Success"){
                     console.log(result.data.user);
                     setUser(result.data.user); // Set the user context
                     navigate('/home'); // Navigate to the home page
-                } else {
-                    setErrorMessage(result.data.message); // Set the error message
+                }
+                else {
+                    setErrorMessage(result.data.message); // Set error message
                 }
             })
             .catch(err => console.log(err));
@@ -56,7 +61,10 @@ function Login() {
                 <div className="already-have">
                     Don't Have an account? <span><Link to="/signup">Click Here!</Link></span> {/* Link to the signup page */}
                 </div>
-                <button type="submit">Login</button> {/* Button to submit the form */}
+                {/* Button to submit the form */}
+                <button type = "submit" className="submit-container submit"> 
+                    Login 
+                </button>
             </form>
         </div>
     );
