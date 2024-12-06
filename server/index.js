@@ -7,14 +7,19 @@ const UserModel = require("./models/userModel");
 const GroupModel = require("./models/groupModel");
 require('dotenv').config();
 
+// Initialize Express app and configure middleware
 const app = express();
+
 app.use(express.json());
+
 app.use(cors({
     origin: 'http://localhost:5173', // Allow only your frontend origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   }));
 
+// Connect to MongoDB using Mongoose
+// Use .env to get the MongoDB URI
 const mongoURI = process.env.mongoURI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -24,6 +29,7 @@ const conn = mongoose.createConnection(mongoURI, {
     useUnifiedTopology: true
 });
 
+// Create a GridFSBucket instance using the connection
 let bucket;
 
 conn.once("open", () => {
@@ -33,10 +39,12 @@ conn.once("open", () => {
     });
 });
 
-const storage = multer.memoryStorage(); // Store files in memory, will upload to GridFS in the endpoint
+// Configure multer to store files
+const storage = multer.memoryStorage(); 
 
 const upload = multer({ storage });
 
+// Endpoint for login
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     UserModel.findOne({ email })
@@ -55,24 +63,28 @@ app.post('/login', (req, res) => {
         .catch(err => res.json(err));
 });
 
+// Endpoint for registration
 app.post('/register', (req, res) => {
     UserModel.create(req.body)
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
+// Endpoint to create a new class
 app.post('/api/group', (req, res) => {
     GroupModel.create(req.body)
         .then(users => res.json(users))
         .catch(err => res.json(err));
 });
 
+// Endpoint to get all classes
 app.get('/api/groups', (req, res) => {
     GroupModel.find()
         .then(groups => res.json(groups))
         .catch(err => res.status(500).json({ message: "Error fetching groups", error: err }));
 });
 
+// Endpoint to upload a file
 app.post("/upload", upload.single("file"), (req, res) => {
     console.log(req.body);
     console.log(req.body.courseId);
@@ -109,10 +121,11 @@ app.post("/upload", upload.single("file"), (req, res) => {
     });
 });
 
+// Endpoint to download a file
 app.get("/file/:filename", (req, res) => {
     const filename = req.params.filename;
 
-    // Fetch the file's metadata from GridFS to get the contentType
+    // Fetch file metadata from GridFS to get the contentType
     const file = bucket.find({ filename: filename }).toArray((err, files) => {
         if (err) {
             return res.status(500).json({ message: 'Error fetching file metadata', error: err });
@@ -140,7 +153,7 @@ app.get("/file/:filename", (req, res) => {
     });
 });
 
-
+// Endpoint to update user classes
 app.put('/api/user/:_id', (req, res) => {
     const userId = req.params._id;
     const { classes } = req.body;
@@ -154,8 +167,8 @@ app.put('/api/user/:_id', (req, res) => {
         });
 });
 
+// Endpoint to get all file metadata from GridFS
 app.get('/files', (req, res) => {
-    // Fetch all file metadata from GridFS
     conn.db.collection('uploads.files').find().toArray((err, files) => {
         if (err) {
             return res.status(500).json({ message: "Error fetching files.", error: err });
@@ -163,11 +176,12 @@ app.get('/files', (req, res) => {
         if (!files || files.length === 0) {
             return res.status(404).json({ message: "No files found." });
         }
-        // Files found, return an array of file metadata
+        // Return an array of file metadata
         res.json(files);
     });
 });
 
+// Function to delete a file by its ID
 async function deleteFile(fileId) {
     console.log("deleteFile");
     try {
@@ -186,9 +200,7 @@ async function deleteFile(fileId) {
     }
 }
 
-  
-  // Route to delete a file
-// Delete a file from GridFS by file ID// Delete a file from GridFS by file ID
+// Route to delete a file from GridFS by file ID
 app.delete('/file/:filename', async (req, res) => {
     const { filename } = req.params;  // Get the filename from the request parameters
     console.log("Received filename:", filename);
@@ -211,11 +223,7 @@ app.delete('/file/:filename', async (req, res) => {
     }
 });
 
-
-
-
-
-
+// Start server on port 3001
 app.listen(3001, () => {
     console.log("server is running");
 });

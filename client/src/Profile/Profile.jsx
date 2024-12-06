@@ -5,8 +5,8 @@ import Sidebar from '../Components/Sidebar';
 import SignOut from '../Components/SignOut';
 
 function Profile() {
-    const { user } = useContext(UserContext);
-    const [files, setFiles] = useState([]);
+    const { user } = useContext(UserContext); // Get user from UserContext
+    const [files, setFiles] = useState([]); // State to store the files
 
     // Fetch files uploaded by the logged-in user
     const fetchFiles = async () => {
@@ -20,7 +20,7 @@ function Profile() {
                     (file) => file.metadata?.uploader === user?.name
                 );
                 console.log("Filtered files for user:", userFiles);
-                setFiles(userFiles);
+                setFiles(userFiles); // Update the files state with filtered files
             } else {
                 console.error('Unexpected response format:', response.data);
             }
@@ -31,7 +31,7 @@ function Profile() {
 
     useEffect(() => {
         if (user) {
-            fetchFiles();
+            fetchFiles(); // Fetch files when the user is available
         }
     }, [user]);
 

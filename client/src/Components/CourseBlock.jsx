@@ -1,21 +1,21 @@
-import React from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import AddClass from './AddClass';
 import RemoveClass from './RemoveClass';
 
 const CourseBlock = ({ courseName, courseId }) => {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate(); // Hook to navigate programmatically
+    const location = useLocation(); // Hook to get the current location
 
     const handleClick = () => {
-        navigate(`/courses/${courseId}`);
+        navigate(`/courses/${courseId}`); // Navigate to the course details page
     };
 
     return (
         <div className="course-block" style={blockStyle}>
-            <h2>{`${courseName} (${courseId})`}</h2>
-            {(location.pathname === '/find') && <AddClass code={courseId} />}
-            {(location.pathname === '/home') && <RemoveClass code={courseId} />}
+            <h2>{`${courseName} (${courseId})`}</h2> 
+            {(location.pathname === '/find') && <AddClass code={courseId} />} {/* Show AddClass component if the current path is '/find' */}
+            {(location.pathname === '/home') && <RemoveClass code={courseId} />} {/* Show RemoveClass component if the current path is '/home' */}
             <div onClick={handleClick} style={viewClassStyle}>
                 <h3>View Class</h3>
             </div>
@@ -23,6 +23,7 @@ const CourseBlock = ({ courseName, courseId }) => {
     );
 };
 
+    // Styling for the CourseBlock component
     const blockStyle = {
         padding: '20px',
         margin: '10px',
@@ -32,6 +33,7 @@ const CourseBlock = ({ courseName, courseId }) => {
         height: '200px'
     };
 
+    // Styling for the View Class button
     const viewClassStyle = {
         padding: '20px',
         margin: '10px',

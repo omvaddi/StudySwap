@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import UploadNote from './UploadNote'; // Keeping the UploadNote component for file uploads
+import UploadNote from './UploadNote'; 
 import axios from 'axios';
 import { UserContext } from '../Context/UserContext';
 import Sidebar from '../Components/Sidebar';
 
 const CourseDetails = () => {
-    const { courseId } = useParams();
-    const [files, setFiles] = useState([]);
-    const { user } = useContext(UserContext);
+    const { courseId } = useParams(); // Get courseId from URL parameters
+    const [files, setFiles] = useState([]); // State to store the files
+    const { user } = useContext(UserContext); // Get user from UserContext
 
     // Fetch files from the backend
     const fetchFiles = async () => {
@@ -22,7 +22,7 @@ const CourseDetails = () => {
                     (file) => file.metadata?.courseId === courseId
                 );
                 console.log("Filtered files:", filteredFiles);
-                setFiles(filteredFiles);
+                setFiles(filteredFiles); // Update the files state with filtered files
             } else {
                 console.error('Unexpected response format:', response.data);
             }
@@ -32,7 +32,7 @@ const CourseDetails = () => {
     };
 
     useEffect(() => {
-        fetchFiles();
+        fetchFiles(); // Fetch files when the component mounts or courseId changes
     }, [courseId]);
 
     // Callback to add a new file to the files state
