@@ -36,7 +36,7 @@ Now, we will create the .env by copying it from .env.sample:
 ```
  .env.sample .env
 ```
-This will load the default MongoDB URI server.
+This will load our default MongoDB URI server, which already has notes and classes uploaded on it.
 
 If you wish to use a different server later, simply change the MongoDB URI in the .env file. Make sure to keep the same formatting.
 
