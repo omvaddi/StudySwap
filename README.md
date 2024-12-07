@@ -20,7 +20,7 @@ cd client
 npm install
 npm create vite@latest
 ```
-When vite prompts, you keep the project name as vite-project and press enter
+When vite prompts you for the project name, keep it as vite-project and press enter
 
 Select React
 
