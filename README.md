@@ -38,7 +38,7 @@ npm install
 
 Now, we will create the .env by copying it from .env.sample:
 ```
- .env.sample .env
+Copy-Item .env.sample .env
 ```
 This will load our default MongoDB URI server, which already has notes and classes uploaded on it.
 
