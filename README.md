@@ -9,6 +9,11 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 Now, clone the GitHub repo to your desired location.
 
+Cd into the repo,
+```
+cd StudySwap
+```
+
 Inside the repo,
 ```
 cd client
